@@ -57,9 +57,10 @@ set showmatch
 syntax enable
 
 " Enables HTML/CSS syntax highlighting in JS files
-let javascript_enable_domhtmlcss=1
+let javascript_enable_domhtmlcss = 1
 
 " Enables JSX Syntax highlighting and indentation
+let g:jsx_ext_required = 0
 
 " Uses the Hybrid Syntax for VIM
 colorscheme hybrid_material
