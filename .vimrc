@@ -59,8 +59,10 @@ syntax enable
 " Enables HTML/CSS syntax highlighting in JS files
 let javascript_enable_domhtmlcss=1
 
+" Enables JSX Syntax highlighting and indentation
+
 " Uses the Hybrid Syntax for VIM
-colorscheme hybrid
+colorscheme hybrid_material
 
 set background=dark
 

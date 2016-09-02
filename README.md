@@ -7,7 +7,7 @@ The following are some common packages I have configured for VIM.
 * **elixir-snippets-master** - Elixir snippets
 * **mustache** - Mustache syntax highlighting
 * **nerdtree** - Sidebar file navigation
-* **Spacegray.vim** - Dark theme
+* **vim-hybird-material** - Hybrid Material Syntax for VIM
 * **supertab** - Tab autocompletion
 * **syntastic** - Syntax check highlighting
 * **tblib** - Utility functions for VIM
@@ -15,6 +15,7 @@ The following are some common packages I have configured for VIM.
 * **vim-css3-syntax** - CSS3 syntax highlighting
 * **vim-elixir** - Elixir highlighting
 * **vim-es6** - ES6 snippets
+* **vim-markdown** - Markdown syntax
 * **vim-javascript-syntax** - JavaScript syntax
 * **vim-javascript** - JavaScript snippets
 * **vim-jsdoc** - JSDoc snippets
