@@ -1,6 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Enable Pathogen
 execute pathogen#infect()
 syntax on
@@ -11,6 +12,7 @@ filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -50,21 +52,22 @@ set lazyredraw
 " Show matching brackets when text indicator is over them
 set showmatch
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Enable syntax highlighting
 syntax enable
 
 " Enables HTML/CSS syntax highlighting in JS files
-let javascript_enable_domhtmlcss = 1
+let javascript_enable_domhtmlcss=1
 
 " Enables JSX Syntax highlighting and indentation
 let g:jsx_ext_required = 0
 
-" Uses the Hybrid Syntax for VIM
+" Uses the Hybrid Material Syntax for VIM
 colorscheme hybrid_material
-
 set background=dark
 
 " Set extra options when running in GUI mode
@@ -88,6 +91,7 @@ set guifont=Monaco:h16
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowb
@@ -98,12 +102,16 @@ set noswapfile
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
+" `expandtab` when using personal, `noexpandtab` when using Cumul8
 set expandtab
+" set noexpandtab
 
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
+" `tabstop` controls how many columns each tab visually takes up
+" `shiftwidth` controls how many columns content is indented per `Tab`
+
 set shiftwidth=2
 set tabstop=2
 
@@ -116,6 +124,8 @@ set breakindent "Line wrap respects indentation
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" NOTE: If <C-h> is broken in Neovim, see: https://github.com/neovim/neovim/wiki/FAQ#my-ctrl-h-mapping-doesnt-work
 " Allows moving around windows to be like regular VIM nav with Ctrl pressed down 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -134,20 +144,26 @@ set viminfo^=%
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
+
 " Always show the status line
 set laststatus=2
+
 " Show line number
 set number
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Remap VIM 0 to first non-blank character
 map 0 ^
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Closes VIM if the only window left is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -162,6 +178,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim CSS3 Syntax  Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Fixes properties that don't highlight properly
 augroup VimCSS3Syntax
   autocmd!
@@ -173,6 +190,7 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let NERDTreeShowHidden = 1
 
 
@@ -182,5 +200,7 @@ let NERDTreeShowHidden = 1
 
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc', '.;') != '' ? ['eslint'] : ['standard']
+
+
