@@ -18,6 +18,9 @@ set autoread
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Turn of copy/paste from outside of VIM
+set clipboard=unnamed
+
 " Turn on the WiLd menu
 set wildmenu
 
