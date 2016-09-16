@@ -32,3 +32,8 @@ All packages are installed using [Pathogen](https://github.com/tpope/vim-pathoge
 ### .vimrc
 
 See `.vimrc` file in this package
+
+### Common Gotchas
+
+* **Syntastic is not working for `eslint`**
+- This is a weird one. The best way to debug this is to see the entire syntastic log to make sure there's no path finding errors. To do so, set `let g:syntastic_debug = 3` in `.vimrc` and open your test file. This should log a bunch of syntastic messages out and hopefully you'll be able to spot some errors right away. If not, type `:mes` into the VIM prompt
