@@ -78,9 +78,9 @@ set t_Co=256
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-  set guioptions-=T
-  set guioptions+=e
-  set guitablabel=%M\ %t
+	set guioptions-=T
+	set guioptions+=e
+	set guitablabel=%M\ %t
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -140,9 +140,9 @@ map <C-l> <C-W>l
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \   exe "normal! g`\"" |
-      \ endif
+			\ if line("'\"") > 0 && line("'\"") <= line("$") |
+			\   exe "normal! g`\"" |
+			\ endif
 " Remember info about open buffers on close
 set viminfo^=%
 
@@ -177,12 +177,11 @@ set rtp+=/usr/local/opt/fzf
 " Uses FF in the prompt to launch FZF
 :command FF FZF
 
-" This is the default extra key bindings
 let g:fzf_action = {
-      \ 'ctrl-t': 'tab split',
-      \ 'ctrl-s': 'split',
-      \ 'ctrl-i': 'vsplit'
-      \ }
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-i': 'split',
+  \ 'ctrl-s': 'vsplit'
+  \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree Config
@@ -209,9 +208,9 @@ let NERDTreeShowHidden = 1
 
 " Fixes properties that don't highlight properly
 augroup VimCSS3Syntax
-  autocmd!
+	autocmd!
 
-  autocmd FileType css setlocal iskeyword+=-
+	autocmd FileType css setlocal iskeyword+=-
 augroup END
 
 
