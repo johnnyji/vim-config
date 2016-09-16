@@ -15,7 +15,7 @@ set autoread
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
+" => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Turn of copy/paste from outside of VIM
@@ -37,7 +37,7 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
@@ -73,12 +73,14 @@ let g:jsx_ext_required = 0
 colorscheme hybrid_material
 set background=dark
 
+" Enables 256 colors in VIM
+set t_Co=256
+
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
+	set guioptions-=T
+	set guioptions+=e
+	set guitablabel=%M\ %t
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -104,6 +106,7 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Use spaces instead of tabs
 " `expandtab` when using personal, `noexpandtab` when using Cumul8
 set expandtab
@@ -129,7 +132,7 @@ set breakindent "Line wrap respects indentation
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " NOTE: If <C-h> is broken in Neovim, see: https://github.com/neovim/neovim/wiki/FAQ#my-ctrl-h-mapping-doesnt-work
-" Allows moving around windows to be like regular VIM nav with Ctrl pressed down 
+" Allows moving around windows to be like regular VIM nav with Ctrl pressed down
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -137,16 +140,16 @@ map <C-l> <C-W>l
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+			\ if line("'\"") > 0 && line("'\"") <= line("$") |
+			\   exe "normal! g`\"" |
+			\ endif
 " Remember info about open buffers on close
 set viminfo^=%
 
 
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status line
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Always show the status line
 set laststatus=2
@@ -164,37 +167,65 @@ map 0 ^
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ctrlp.vim Config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Sets up ctrlp.vim
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" Makes sure update only happens when typing ends,
+" this is better for fast typers
+let g:ctrlp_lazy_update = 1
+
+" Allow `ctrl-i` to open new files vertically to mimick the way
+" NERDTree opens files vertically
+" NOTE: <c-i> means <tab> in VIM. So we need to make this workaround
+let g:ctrlp_prompt_mappings = {
+			\ 'AcceptSelection("v")': ['<tab>', '<RightMouse>'],
+			\ 'PrtExpandDir()': ['<s-tab>'],
+			\ }
+
+" Sets the current working directory has the starting directory
+let g:ctrlp_working_path_mode = 'ra'
+
+" Ignore the following files when searcing
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip " MacOSX/Linux
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Closes VIM if the only window left is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Auto enters NERDTree if VIM is launched with no file specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" NOTE: Disabled this feature because ctrlp.vim doesn't jive well with
+" NERDTree. Keep disabled until `https://github.com/ctrlpvim/ctrlp.vim/issues/235` is resolved
+"
+" " Auto enters NERDTree if VIM is launched with no file specified
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Maps the command :NT to :NERDTree
 :command NT NERDTree
 
+" Shows hidden files like .gitignore
+let NERDTreeShowHidden = 1
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim CSS3 Syntax  Config
+" => CSS3 Syntax Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Fixes properties that don't highlight properly
 augroup VimCSS3Syntax
-  autocmd!
+	autocmd!
 
-  autocmd FileType css setlocal iskeyword+=-
+	autocmd FileType css setlocal iskeyword+=-
 augroup END
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => NERDTree Config
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let NERDTreeShowHidden = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -207,3 +238,11 @@ let g:syntastic_check_on_wq = 1
 autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc', '.;') != '' ? ['eslint'] : ['standard']
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-airline Config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Show tabs at the top
+" let g:airline#extensions#tabline#enabled = 1
+" Use hybrid theme
+let g:airline_theme = "bubblegum"
