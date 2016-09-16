@@ -78,9 +78,9 @@ set t_Co=256
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-	set guioptions-=T
-	set guioptions+=e
-	set guitablabel=%M\ %t
+  set guioptions-=T
+  set guioptions+=e
+  set guitablabel=%M\ %t
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -140,9 +140,9 @@ map <C-l> <C-W>l
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-			\ if line("'\"") > 0 && line("'\"") <= line("$") |
-			\   exe "normal! g`\"" |
-			\ endif
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 " Remember info about open buffers on close
 set viminfo^=%
 
@@ -167,33 +167,22 @@ map 0 ^
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ctrlp.vim Config
+" => fzf Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Sets up ctrlp.vim
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+" Sets up fzf.vim
+" If installed using Homebrew
+set rtp+=/usr/local/opt/fzf
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+" Uses FF in the prompt to launch FZF
+:command FF FZF
 
-" Makes sure update only happens when typing ends,
-" this is better for fast typers
-let g:ctrlp_lazy_update = 1
-
-" Allow `ctrl-i` to open new files vertically to mimick the way
-" NERDTree opens files vertically
-" NOTE: <c-i> means <tab> in VIM. So we need to make this workaround
-let g:ctrlp_prompt_mappings = {
-			\ 'AcceptSelection("v")': ['<tab>', '<RightMouse>'],
-			\ 'PrtExpandDir()': ['<s-tab>'],
-			\ }
-
-" Sets the current working directory has the starting directory
-let g:ctrlp_working_path_mode = 'ra'
-
-" Ignore the following files when searcing
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip " MacOSX/Linux
-
+" This is the default extra key bindings
+let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-i': 'vsplit'
+      \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree Config
@@ -202,9 +191,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip " MacOSX/Linux
 " Closes VIM if the only window left is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" NOTE: Disabled this feature because ctrlp.vim doesn't jive well with
-" NERDTree. Keep disabled until `https://github.com/ctrlpvim/ctrlp.vim/issues/235` is resolved
-"
+" NOTE: Disabled to prefer to launch FZF at launch instead
 " " Auto enters NERDTree if VIM is launched with no file specified
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -222,9 +209,9 @@ let NERDTreeShowHidden = 1
 
 " Fixes properties that don't highlight properly
 augroup VimCSS3Syntax
-	autocmd!
+  autocmd!
 
-	autocmd FileType css setlocal iskeyword+=-
+  autocmd FileType css setlocal iskeyword+=-
 augroup END
 
 

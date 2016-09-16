@@ -6,8 +6,8 @@ The following are some common packages I have configured for VIM.
 
 All packages are installed using [Pathogen](https://github.com/tpope/vim-pathogen)
 
-* **ctrlp.vim** - FuzzyFinder for VIM
 * **elixir-snippets-master** - Elixir snippets
+* **fzf.vim** - FuzzyFinder for VIM
 * **mustache** - Mustache syntax highlighting
 * **nerdtree** - Sidebar file navigation
 * **supertab** - Tab autocompletion
