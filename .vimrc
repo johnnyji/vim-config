@@ -1,7 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
+" => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Enable Pathogen
 execute pathogen#infect()
 syntax on
@@ -178,10 +177,10 @@ set rtp+=/usr/local/opt/fzf
 :command FF FZF
 
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-i': 'split',
-  \ 'ctrl-s': 'vsplit'
-  \ }
+			\ 'ctrl-t': 'tab split',
+			\ 'ctrl-i': 'split',
+			\ 'ctrl-s': 'vsplit'
+			\ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree Config
@@ -218,17 +217,19 @@ augroup END
 " => Syntastic Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc', '.;') != '' ? ['eslint'] : ['standard']
+let g:syntastic_check_on_wq = 0
+let g:synastic_javascript_checkers = ['eslint']
 
+autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc', '.;') != '' ? ['eslint'] : ['standard']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-airline Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Show tabs at the top
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 " Use hybrid theme
 let g:airline_theme = "bubblegum"
