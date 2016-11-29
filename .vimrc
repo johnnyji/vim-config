@@ -1,6 +1,3 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => User Interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable Pathogen
 execute pathogen#infect()
 syntax on
@@ -107,9 +104,7 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use spaces instead of tabs
-" `expandtab` when using personal, `noexpandtab` when using Cumul8
 set expandtab
-" set noexpandtab
 
 " Be smart when using tabs ;)
 set smarttab
@@ -163,6 +158,20 @@ set number
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Ack Config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" If Ag is present, it will override Ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" Makes sure we don't automatically open the first result returned by Ack
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

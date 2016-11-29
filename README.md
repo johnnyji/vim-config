@@ -7,7 +7,10 @@ The following are some common packages I have configured for VIM.
 All packages are installed using [Pathogen](https://github.com/tpope/vim-pathogen)
 
 * **elixir-snippets-master** - Elixir snippets
-* **fzf.vim** - FuzzyFinder for VIM
+* **fzf.vim** - FuzzyFinder for VIM (Install using Homebrew)
+* **the_silver_searcher** - Ag for VIM (Install using Homebrew)
+* **ack.vim** - Search in directory for VIM
+* **ack** - Ack used in `ack.vim`, (Install using Homebrew)
 * **mustache** - Mustache syntax highlighting
 * **nerdtree** - Sidebar file navigation
 * **supertab** - Tab autocompletion
