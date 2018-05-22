@@ -31,6 +31,7 @@ All packages are installed using [Pathogen](https://github.com/tpope/vim-pathoge
 * **vim-react-es6-snippets** - Johnny Ji ES6 snippets
 * **vim-snipmate** - VIM autocompletion
 * **vim-snippets** - Default snippets for VIM
+* **vim-graphql** - GraphQL Syntax highlighting for VIM
 
 ### .vimrc
 
