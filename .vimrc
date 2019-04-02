@@ -8,7 +8,7 @@ endif
 " " Enable Pathogen
 " execute pathogen#infect()
 " syntax on
-" 
+
 " " Enable filetype plugins
 " filetype plugin on
 " filetype indent on
@@ -40,6 +40,7 @@ Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'jparise/vim-graphql'
 Plug 'mhinz/vim-mix-format'
+Plug 'sbdchd/neoformat'
 
 " Initialize plugin system
 call plug#end()
@@ -259,6 +260,12 @@ augroup VimCSS3Syntax
 	autocmd FileType css setlocal iskeyword+=-
 augroup END
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Prettier Config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Automatically runs Prettier on save
+autocmd BufWritePre *.js Neoformat
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic Config
