@@ -20,12 +20,13 @@ call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
 
-Plug 'mileszs/ack.vim' " Requires installing Ack via Homebrew
+" Run :PlugInstall in VIM whenever a plug is added/removed
+Plug 'tomtom/tlib_vim'
+Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'scrooloose/nerdtree'
 Plug 'ervandew/supertab'
-Plug 'vim-syntastic/syntastic'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -41,6 +42,7 @@ Plug 'honza/vim-snippets'
 Plug 'jparise/vim-graphql'
 Plug 'mhinz/vim-mix-format'
 Plug 'sbdchd/neoformat'
+Plug 'w0rp/ale'
 
 " Initialize plugin system
 call plug#end()
@@ -113,9 +115,9 @@ set t_Co=256
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-	set guioptions-=T
-	set guioptions+=e
-	set guitablabel=%M\ %t
+  set guioptions-=T
+  set guioptions+=e
+  set guitablabel=%M\ %t
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -261,27 +263,22 @@ augroup VimCSS3Syntax
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ALE Config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Allows ESLint to autogenerate error in VIM on save
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Prettier Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Automatically runs Prettier on save
+" Automatically runs prettier on save
 autocmd BufWritePre *.js Neoformat
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntastic Config
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Uncomment this when debugging
-" let g:syntastic_debug = 3
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:synastic_javascript_checkers = ['eslint']
-
-autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc', '.;') != '' ? ['eslint'] : ['standard']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-airline Config
@@ -309,7 +306,7 @@ let g:mix_format_silent_errors = 1
 let g:javascript_plugin_jsdoc = 1
 " Enables Flow highlighting
 let g:javascript_plugin_flow = 1
-" Conceal characters
-set conceallevel=1
-let g:javascript_conceal_function = "ƒ"
-let g:javascript_conceal_arrow_function = "⇒"
+" " Conceal characters
+" set conceallevel=1
+" let g:javascript_conceal_function = "ƒ"
+" let g:javascript_conceal_arrow_function = "⇒"
