@@ -21,28 +21,31 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 " Run :PlugInstall in VIM whenever a plug is added/removed
-Plug 'tomtom/tlib_vim'
-Plug 'mileszs/ack.vim'
-Plug 'junegunn/fzf.vim'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'scrooloose/nerdtree'
-Plug 'ervandew/supertab'
 Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'hail2u/vim-css3-syntax'
 Plug 'elixir-editors/vim-elixir'
-Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'ervandew/supertab'
 Plug 'gabrielelana/vim-markdown'
 Plug 'garbas/vim-snipmate'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
+Plug 'jelera/vim-javascript-syntax'
 Plug 'jparise/vim-graphql'
+Plug 'junegunn/fzf.vim'
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mhinz/vim-mix-format'
+Plug 'mileszs/ack.vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'pangloss/vim-javascript'
 Plug 'sbdchd/neoformat'
+Plug 'scrooloose/nerdtree'
+Plug 'tomtom/tlib_vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
+Plug 'prettier/vim-prettier'
 
 " Initialize plugin system
 call plug#end()
@@ -100,6 +103,10 @@ set showmatch
 " Enable syntax highlighting
 syntax enable
 
+" Increases the redraw time so syntax highlighting does not
+" dissapear on larger files
+set redrawtime=10000
+
 " Enables HTML/CSS syntax highlighting in JS files
 let javascript_enable_domhtmlcss=1
 
@@ -126,8 +133,8 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-" Sets default font size to 16px
-set guifont=Monaco:h16
+" Sets default font size to 20px
+set guifont=Monaco:h20
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -250,7 +257,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Shows hidden files like .gitignore
 let NERDTreeShowHidden = 1
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CSS3 Syntax Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -267,8 +273,13 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Allows ESLint to autogenerate error in VIM on save
+let g:ale_fixers = {
+ \ 'javascript': ['eslint'],
+ \ 'typescript': ['eslint']
+ \ }
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
+let g:ale_fix_on_save = 1
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
@@ -277,8 +288,10 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Automatically runs prettier on save
-autocmd BufWritePre *.js Neoformat
-
+autocmd BufWritePre *.js Prettier
+autocmd BufWritePre *.jsx Prettier
+autocmd BufWritePre *.ts Prettier
+autocmd BufWritePre *.tsx Prettier
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-airline Config

@@ -1,4 +1,4 @@
-# My VIM Configurations
+## My VIM Configurations
 
 The following are some common packages I have configured for VIM.
 
