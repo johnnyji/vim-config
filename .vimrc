@@ -5,10 +5,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" " Enable Pathogen
-" execute pathogen#infect()
-" syntax on
-
 " " Enable filetype plugins
 " filetype plugin on
 " filetype indent on
@@ -31,21 +27,24 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'jparise/vim-graphql'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'mhinz/vim-mix-format'
 Plug 'mileszs/ack.vim'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
+Plug 'prettier/vim-prettier'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tlib_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
-Plug 'prettier/vim-prettier'
 
 " Initialize plugin system
 call plug#end()
@@ -112,6 +111,9 @@ let javascript_enable_domhtmlcss=1
 
 " Enables JSX Syntax highlighting and indentation
 let g:jsx_ext_required = 0
+
+" Enables TSX Syntax highlighting and indentation
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 
 " Uses the Hybrid Material Syntax for VIM
 colorscheme hybrid_material
@@ -233,6 +235,9 @@ set rtp+=/usr/local/opt/fzf
 " Uses FF in the prompt to launch FZF
 :command FF FZF
 
+" Jumps to existing window if possible
+let g:fzf_buffers_jump = 1
+
 let g:fzf_action = {
 			\ 'ctrl-t': 'tab split',
 			\ 'ctrl-i': 'split',
@@ -323,3 +328,11 @@ let g:javascript_plugin_flow = 1
 " set conceallevel=1
 " let g:javascript_conceal_function = "ƒ"
 " let g:javascript_conceal_arrow_function = "⇒"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => CoC Config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" https://pragmaticpineapple.com/ultimate-vim-typescript-setup/
+" Run `:CocInstall coc-tsserver` to install TypeScript support for CoC
+let g:coc_global_extensions = ['coc-tsserver']
