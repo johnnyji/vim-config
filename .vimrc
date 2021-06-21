@@ -5,6 +5,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" " Enable Pathogen
+" execute pathogen#infect()
+" syntax on
+
 " " Enable filetype plugins
 " filetype plugin on
 " filetype indent on
@@ -25,21 +29,24 @@ Plug 'garbas/vim-snipmate'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'jparise/vim-graphql'
+" Fuzzy find
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'leafgarland/typescript-vim'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'peitalin/vim-jsx-typescript'
 Plug 'mhinz/vim-mix-format'
 Plug 'mileszs/ack.vim'
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" TS syntax
+Plug 'leafgarland/typescript-vim'
+" JavaScript support
 Plug 'pangloss/vim-javascript'
+" JS and JSX syntax
+Plug 'maxmellon/vim-jsx-pretty'
+" GQL syntax
+Plug 'jparise/vim-graphql'
 Plug 'prettier/vim-prettier'
 Plug 'sbdchd/neoformat'
+" File tree structure
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tlib_vim'
 Plug 'vim-airline/vim-airline'
@@ -279,12 +286,14 @@ augroup END
 
 " Allows ESLint to autogenerate error in VIM on save
 let g:ale_fixers = {
- \ 'javascript': ['eslint'],
- \ 'typescript': ['eslint']
+ \ 'javascript': ['prettier', 'eslint'],
+ \ 'typescript': ['prettier', 'eslint']
  \ }
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 let g:ale_fix_on_save = 1
+let g:ale_typescript_prettier_use_local_config = 1
+let g:ale_linters_explicit = 1
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
@@ -336,3 +345,13 @@ let g:javascript_plugin_flow = 1
 " https://pragmaticpineapple.com/ultimate-vim-typescript-setup/
 " Run `:CocInstall coc-tsserver` to install TypeScript support for CoC
 let g:coc_global_extensions = ['coc-tsserver']
+
+" Allows tsserver to recognize TSX and JSX files properly in order to not
+" falsely report TSX errors
+"
+" https://www.reddit.com/r/neovim/comments/it6xe5/coctsserver_reports_a_lot_of_errors_in_tsx_files/
+augroup ReactFiletypes
+  autocmd!
+  autocmd BufRead,BufNewFile *.jsx set filetype=javascriptreact
+  autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
+augroup END
