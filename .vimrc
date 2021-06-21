@@ -355,3 +355,12 @@ augroup ReactFiletypes
   autocmd BufRead,BufNewFile *.jsx set filetype=javascriptreact
   autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
 augroup END
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => SnipMate Config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Update to use the latest snipmate parser
+"
+" https://www.wiserfirst.com/blog/vim-tip-snipmate-legacy-parser-warning/
+let g:snipMate = { 'snippet_version' : 1 }
