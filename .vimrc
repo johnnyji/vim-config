@@ -269,7 +269,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Shows hidden files like .gitignore
 let NERDTreeShowHidden = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CSS3 Syntax Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -280,7 +280,7 @@ augroup VimCSS3Syntax
 	autocmd FileType css setlocal iskeyword+=-
 augroup END
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ALE Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -297,7 +297,7 @@ let g:ale_linters_explicit = 1
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Prettier Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -307,7 +307,7 @@ autocmd BufWritePre *.jsx Prettier
 autocmd BufWritePre *.ts Prettier
 autocmd BufWritePre *.tsx Prettier
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-airline Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -316,7 +316,7 @@ let g:airline#extensions#tabline#enabled = 1
 " Use hybrid theme
 let g:airline_theme = "bubblegum"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-mix-format Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -325,7 +325,7 @@ let g:mix_format_on_save = 1
 " Change error stack trace to single line on the VIM bar instead of a seperate window
 let g:mix_format_silent_errors = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-javascript Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -338,7 +338,7 @@ let g:javascript_plugin_flow = 1
 " let g:javascript_conceal_function = "ƒ"
 " let g:javascript_conceal_arrow_function = "⇒"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CoC Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
