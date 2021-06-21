@@ -16,6 +16,12 @@ The following are prerequisites that need to be installed via Homebrew beforehan
 
 See `.vimrc` file in this package
 
+#### Install, Update, Clean Packages
+
+* Run `:PlugInstall` in a vim command line in order to install new plugs added to the .vimrc
+* Run `:PlugUpdate` in a vim command line in order to update all vim plugs installed
+* Run `:PlugClean` in a vim command line in order to remove any plugs that have been removed from the .vimrc
+
 ---
 
 ### Common Gotchas
