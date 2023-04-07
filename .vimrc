@@ -42,6 +42,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 " JS and JSX syntax
 Plug 'maxmellon/vim-jsx-pretty'
+" TS syntax in .jsx and .tsx files
+Plug 'peitalin/vim-jsx-typescript'
 " GQL syntax
 Plug 'jparise/vim-graphql'
 Plug 'prettier/vim-prettier'
@@ -52,6 +54,8 @@ Plug 'tomtom/tlib_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
+
+Plug 'github/copilot.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -218,6 +222,17 @@ map 0 ^
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntax highlighting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Force rescans files from start in js & ts files in order to prevent
+" out of sync syntax highlighting on bigger files
+"
+" See: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -286,6 +301,7 @@ augroup END
 
 " Allows ESLint to autogenerate error in VIM on save
 let g:ale_fixers = {
+ \ '*': ['remove_trailing_lines', 'trim_whitespace'],
  \ 'javascript': ['prettier', 'eslint'],
  \ 'typescript': ['prettier', 'eslint']
  \ }
@@ -344,6 +360,15 @@ let g:javascript_plugin_flow = 1
 " https://pragmaticpineapple.com/ultimate-vim-typescript-setup/
 " Run `:CocInstall coc-tsserver` to install TypeScript support for CoC
 let g:coc_global_extensions = ['coc-tsserver']
+
+" Shows errors and warnings in vim
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
 
 " Allows tsserver to recognize TSX and JSX files properly in order to not
 " falsely report TSX errors
