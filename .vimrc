@@ -388,3 +388,16 @@ augroup END
 "
 " https://www.wiserfirst.com/blog/vim-tip-snipmate-legacy-parser-warning/
 let g:snipMate = { 'snippet_version' : 1 }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => sql
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Auto runs !pg_format on a SQL file on save, except for the `structure.sql`
+" file since thats commited to Distru and auto-generated
+"
+" In order for this to work, you must have pgformatter installed throug pip
+augroup FormatOnSave
+  autocmd!
+  autocmd BufWritePre *.sql if expand('%:t') !=# 'structure.sql' | let save_cursor = getpos('.') | silent execute ':%!pg_format' | call setpos('.', save_cursor) | endif
+augroup END
